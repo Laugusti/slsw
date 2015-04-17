@@ -1,1 +1,1 @@
-This contains exmaples/solution from Seven Languages in Seven Weeks
+This contains examples/solution from Seven Languages in Seven Weeks
