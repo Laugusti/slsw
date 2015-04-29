@@ -1,3 +1,0 @@
-first	nil	nil	nil	nil
-nil	nil	middle	nil	nil
-nil	value	nil	nil	last
