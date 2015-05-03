@@ -1,3 +1,7 @@
+//This program demonstrates Domain-Specific Language implementation in IO. It makes changes to language
+//at Runtime to execute a regular file as code
+
+
 //create new assignment operator; replaces ':' with 'atPutNumber'
 //i.e. "string1" : "string2" becomes atPutNumber(""string1"","string2")
 OperatorTable addAssignOperator(":", "atPutNumber")
