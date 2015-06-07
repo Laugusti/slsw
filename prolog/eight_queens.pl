@@ -51,7 +51,7 @@ different_diagonal([Head|Tail]) :-
 		    (3) all queens on the board must have different rows and columns
 		    (4) all queens on the board must have different diagonals*/
 eight_queens(Board) :-
-	length(Board, 8),
+	Board = [(1, _), (2, _), (3, _), (4, _), (5, _), (6, _), (7, _), (8, _)],
 	valid_board(Board),
 	different_row_col(Board),
 	different_diagonal(Board).
