@@ -1,32 +1,55 @@
+/*This facts states an empty list is a valid board*/
 valid_board([]).
-valid_board([(X,Y)|Tail]) :-
+/*This rule states both values in the Head tuple must be in the range 1-8, and 
+  the Tail of the list is also valid*/
+valid_board([(Row,Column)|Tail]) :-
 	Range = [1,2,3,4,5,6,7,8],
-	member(X, Range), 
-	member(Y, Range),
+	member(Row, Range), 
+	member(Column, Range),
 	valid_board(Tail).
 
+/*This rule states an empty list contains different rows and columns*/
 different_row_col([]).
-different_row_col([(X,Y)|Tail]) :-
-	\+(member((X,_), Tail)),
-	\+(member((_,Y), Tail)),
+/*This rule states a list has different rows and columns if the Tail has
+  different rows and columns and there is no member in the Tail list with the
+  same Row as the Head of list and there is no member in the Tail list with the
+  same Columns as the Head of the list*/
+different_row_col([(Row,Column)|Tail]) :-
+	\+(member((Row,_), Tail)),
+	\+(member((_,Column), Tail)),
 	different_row_col(Tail).
 
-diagonal_in_list((X1,Y1), List, (X2,Y2)) :-
-	member((X2,Y2), List),
-	DiagMinus is X1 - Y1,
-	Diag1 is X2 - Y2,
+/*This rule is finds a Queen2 in the List that is diagonal to Queen1
+  Two Queens are Upperleft-to-Lowerright diagonal if the difference of their
+  Row and Column are the same*/
+diagonal_in_list((Row1,Column1), List, (Row2,Column2)) :-
+	member((Row2,Column2), List),
+	DiagMinus is Row1 - Column1,
+	Diag1 is Row2 - Column2,
 	DiagMinus = Diag1.
-diagonal_in_list((X1,Y1), List, (X2,Y2)) :-
-	member((X2,Y2), List),
-	DiagAdd is X1 + Y1,
-	Diag1 is X2 + Y2,
+/*This rule is finds a Queen2 in the List that is diagonal to Queen1
+  Two Queens are Lowerleft-to-Upperright diagonal if the sum of their
+  Row and Column are the same*/
+diagonal_in_list((Row1,Column1), List, (Row2,Column2)) :-
+	member((Row2,Column2), List),
+	DiagAdd is Row1 + Column1,
+	Diag1 is Row2 + Column2,
 	DiagAdd = Diag1.
 	
+/*This clause states a list with a single queen have different diagonals for
+   all queens*/
 different_diagonal([_|[]]).
+/*This rule states all queens in a list have different diagonals if there are
+  no Queens in the Tail that is diagonal to the Head and if all queens in the
+  Tail are diagonal*/
 different_diagonal([Head|Tail]) :-
 	\+(diagonal_in_list(Head, Tail, _)),
 	different_diagonal(Tail).
 	
+/*This rule states: (1) the length of the Board must be 8
+		    (2) the board must be valid
+		    (3) all queens on the board must have different rows and columns
+		    (4) all queens on the board must have different diagonals*/
 eight_queens(Board) :-
 	length(Board, 8),
 	valid_board(Board),
