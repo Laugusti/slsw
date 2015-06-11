@@ -19,7 +19,7 @@ different_row_col([(Row,Column)|Tail]) :-
 	\+(member((_,Column), Tail)),
 	different_row_col(Tail).
 
-/*This rule is finds a Queen2 in the List that is diagonal to Queen1
+/*This rule finds a Queen2 in the List that is diagonal to Queen1
   Two Queens are Upperleft-to-Lowerright diagonal if the difference of their
   Row and Column are the same*/
 diagonal_in_list((Row1,Column1), List, (Row2,Column2)) :-
@@ -27,7 +27,7 @@ diagonal_in_list((Row1,Column1), List, (Row2,Column2)) :-
 	DiagMinus is Row1 - Column1,
 	Diag1 is Row2 - Column2,
 	DiagMinus = Diag1.
-/*This rule is finds a Queen2 in the List that is diagonal to Queen1
+/*This rule finds a Queen2 in the List that is diagonal to Queen1
   Two Queens are Lowerleft-to-Upperright diagonal if the sum of their
   Row and Column are the same*/
 diagonal_in_list((Row1,Column1), List, (Row2,Column2)) :-
@@ -41,7 +41,7 @@ diagonal_in_list((Row1,Column1), List, (Row2,Column2)) :-
 different_diagonal([_|[]]).
 /*This rule states all queens in a list have different diagonals if there are
   no Queens in the Tail that is diagonal to the Head and if all queens in the
-  Tail are diagonal*/
+  Tail have different diagonals*/
 different_diagonal([Head|Tail]) :-
 	\+(diagonal_in_list(Head, Tail, _)),
 	different_diagonal(Tail).
