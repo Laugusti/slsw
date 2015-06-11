@@ -1,10 +1,10 @@
-/*Need clpfd library for all_different/1 and ins rule*/
+/*Need clpfd library for all_distinct/1 and ins rule*/
 :- use_module(library(clpfd)).
 
 /*List is valid if empty or elements of head are all different and the Tail of the list is valid*/
 valid([]).
 valid([Head|Tail]) :-
-	all_different(Head),
+	all_distinct(Head),
 	valid(Tail).
 
 /*This is rule attempts to solve a 4x4 Sudoku puzzle*/
