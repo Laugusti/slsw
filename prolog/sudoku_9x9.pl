@@ -7,6 +7,21 @@ valid([Head|Tail]) :-
 	all_distinct(Head),
 	valid(Tail).
 
+/*
+Example puzzle:
+
+forall(sudoku([
+_,_,3,_,_,4,_,_,_,
+_,_,_,_,_,_,9,7,6,
+_,_,_,6,7,_,_,3,_,
+_,_,1,3,_,_,_,_,5,
+_,_,_,7,5,8,_,_,_,
+2,_,_,_,_,6,8,_,_,
+_,3,_,_,9,5,_,_,_,
+8,2,5,_,_,_,_,_,_,
+_,_,_,8,_,_,6,_,_
+], Solution), write_list(Solution)).
+*/
 /*This is rule attempts to solve a 6x6 Sudoku puzzle*/
 sudoku(Puzzle, Solution) :-
 	Solution = Puzzle,
@@ -61,6 +76,7 @@ sudoku(Puzzle, Solution) :-
 		Col1, Col2, Col3, Col4, Col5, Col6, Col7, Col8, Col9,
 		Square1, Square2, Square3, Square4, Square5, Square6, Square7, Square8, Square9]).
 
+/*"Pretty print" Soduku puzzle*/
 write_list(List) :-
 	List = [S11, S12, S13, S14, S15, S16, S17, S18, S19,
 		  S21, S22, S23, S24, S25, S26, S27, S28, S29,
