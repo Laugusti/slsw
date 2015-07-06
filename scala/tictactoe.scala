@@ -24,6 +24,7 @@ class TicTacToe(var board : Array[Char]) {
     for(i <- 0 until size*size by size) {
       for(j <- 0 until size) {
         var c = if(board(i+j) == TicTacToe.blank) (i+j).toString else board(i+j).toString
+        c = c.padTo((size*size-1).toString.length, ' ')
         print(c+(if(j==size-1) "" else "|"))
       }
       println
@@ -40,6 +41,7 @@ class TicTacToe(var board : Array[Char]) {
     var xTurn = true
     //Keep playing will game is not finished
     while(validateBoard == TicTacToe.notFinished) {
+      println
       printBoard
       if(xTurn)
         print("Player X move: ")
@@ -128,5 +130,9 @@ class TicTacToe(var board : Array[Char]) {
   }
 }
 
-var game = new TicTacToe(3)
+if (args.length != 1) {
+  println("Usage: specify 1 argument for board size")
+  System.exit(1)
+}
+var game = new TicTacToe(args(0).toInt)
 game.playGame()
